@@ -1,0 +1,49 @@
+﻿<Window x:Class="LambdaPropertyPerformanceApp.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Window1"
+        Width="400"
+        Height="200">
+    <Window.Resources>
+        <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="200" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Name="ButtonINotifyNoBinding">INotify (no binding)</Button>
+                <TextBlock Text="{Binding INotifyNoBindingResult}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="ButtonINotifyWithBinding">INotify (with binding)</Button>
+                <TextBlock Text="{Binding INotifyWithBindingResult}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Name="ButtonLambdaNoBinding">Lambda (no binding)</Button>
+                <TextBlock Text="{Binding LambdaNoBindingResult}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="ButtonLambdaWithBinding">Lambda (with binding)</Button>
+                <TextBlock Text="{Binding LambdaWithBindingResult}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Name="ButtonDependencyObjectNoBinding">DependencyObject (no binding)</Button>
+                <TextBlock Text="{Binding DependencyObjectNoBindingResult}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="ButtonDependencyObjectWithBinding">DependencyObject (with binding)</Button>
+                <TextBlock Text="{Binding DependencyObjectWithBindingResult}" />
+            </StackPanel>
+
+            <!--  Listens to a property change on the bound object (for the property change performance tests)  -->
+            <Grid DataContext="{Binding PropertyChangingViewModel}">
+                <TextBlock Text="{Binding DummyProperty}" />
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</Window>
